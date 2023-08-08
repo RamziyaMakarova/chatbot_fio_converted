@@ -8,6 +8,9 @@ dp = Dispatcher(bot)
 logging.basicConfig(filename='bot.log', level=logging.INFO,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 def transliteration(fio_parts):
+    fio = message.text
+    fio_parts = fio.split(' ')
+    translit_fio = transliteration(fio_parts)
     translit_dict = {
         "А": "A","а": "a","Б": "B","б": "b","В": "V","в": "v","Г": "G","г": "g","Д": "D","д": "d","Е": "E","е": "e",
         "Ё": "E","ё": "e","Ж": "ZH","ж": "zh","З": "Z","з": "z","И": "I","и": "i","Й": "I","й": "i","К": "K","к": "k",
@@ -36,11 +39,6 @@ async def start(message: types.Message):
 @dp.message_handler()
 async def convert_fio(message: types.Message):
     logging.info(f'Получено сообщение от пользователя: {message.text}')
-
-    fio = message.text
-    fio_parts = fio.split(' ')
-    translit_fio = transliteration(fio_parts)
-
     logging.info(f'Ваше ФИО в международном формате: {translit_fio}')
     await message.reply(f'Ваше ФИО в международном формате: {translit_fio}')
 
