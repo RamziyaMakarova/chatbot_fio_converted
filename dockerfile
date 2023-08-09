@@ -1,13 +1,14 @@
-FROM python:3.10.12
+FROM python:slim
 
 WORKDIR /app
 
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . /app
+ENV TOKEN='6509267030:AAFahfIPO2efBen5dLLjmjJ7s5uYy6hGmVY'
 
-ENV TOKEN='6045201299:AAGgT6aR7avmn3BCCMmt8HV5N8aHu78S3SI'
+COPY . .
+
+RUN pip install -r requirements.txt
 
 CMD ["python", "bot_fioinabc.py"]

@@ -7,7 +7,7 @@ bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 logging.basicConfig(filename='bot.log', level=logging.INFO,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-def transliteration(fio:str):
+def transliteration(fio):
     fio_parts = fio.split(' ')
     translit_dict = {
         "А": "A","а": "a","Б": "B","б": "b","В": "V","в": "v","Г": "G","г": "g","Д": "D","д": "d","Е": "E","е": "e",
@@ -37,9 +37,10 @@ async def start(message: types.Message):
 @dp.message_handler()
 async def convert_fio(message: types.Message):
     logging.info(f'Получено сообщение от пользователя: {message.text}')
+    user_ID = message.from_user.id
     translit_fio = transliteration(message.text)
-    logging.info(f'Ваше ФИО в международном формате: {" ".join(translit_fio)}')
-    await message.reply(f'Ваше ФИО в международном формате: {" ".join(translit_fio)}')
+    logging.info(f'Ваше ФИО в международном формате: {translit_fio}')
+    await bot.send_message(user_ID, f'Ваше ФИО в международном формате: {translit_fio}')
 
 if __name__ == '__main__':
     executor.start_polling(dp)
