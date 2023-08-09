@@ -2,7 +2,7 @@ import time
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 
-TOKEN = '6045201299:AAGgT6aR7avmn3BCCMmt8HV5N8aHu78S3SI'
+TOKEN = 'your_token'
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 logging.basicConfig(filename='bot.log', level=logging.INFO,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')

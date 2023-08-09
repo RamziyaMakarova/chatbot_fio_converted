@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 
-ENV TOKEN='6509267030:AAFahfIPO2efBen5dLLjmjJ7s5uYy6hGmVY'
+ENV TOKEN='your token'
 
 COPY . .
 
